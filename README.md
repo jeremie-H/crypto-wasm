@@ -28,6 +28,7 @@ or just `wasm-pack build` if you don't need the live reload.
 - 🛠️ in a second terminal 2️⃣, run the following command
 ```
 cd www
+npm install
 npm run start
 ```
 - open http://localhost:8080
