@@ -40,6 +40,6 @@ npm run start
 ```
 npm run build
 ```
-- copy the `dist` directory in your web server
+- copy the `www/dist/` directory's content in your web server, with `www/js` and `www/css` directories (see **gh-pages** branch for example)
 
 
