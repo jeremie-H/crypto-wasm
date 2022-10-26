@@ -2,9 +2,9 @@ import * as wasm from "crypto-wasm";
 
 
 document.querySelector('#encrypt-button').addEventListener('click', function(event) {
-  let keyElt = document.getElementById('wasm-enc-key');
+  let clef = document.getElementById('wasm-enc-key').value;
   let message = document.getElementById('wasm-enc-message').value;
-  wasm.encrypt(document, document.getElementById('wasm-enc-result'), keyElt, { message: message, key: keyElt.value });
+  wasm.encrypt(document, { message: message, key: clef });
   
 });
 
@@ -34,18 +34,18 @@ function copyTextToClipboard(text) {
     });
 }
 
-    var copyNonce = document.querySelector('.js-copy-nonce-btn'),
-        copyEncoded = document.querySelector('.js-copy-encoded-btn'),
-        copyDecoded = document.querySelector('.js-copy-decoded-btn');
+var copyNonce = document.querySelector('.js-copy-nonce-btn'),
+    copyEncoded = document.querySelector('.js-copy-encoded-btn'),
+    copyDecoded = document.querySelector('.js-copy-decoded-btn');
 
-    copyNonce.addEventListener('click', function(event) {
-        copyTextToClipboard(document.querySelector('.result_nonce').innerText);
-    });
+copyNonce.addEventListener('click', function(event) {
+    copyTextToClipboard(document.querySelector('.result_nonce').innerText);
+});
 
-    copyEncoded.addEventListener('click', function(event) {
-        copyTextToClipboard(document.querySelector('.result_encoded').innerText);
-    });
+copyEncoded.addEventListener('click', function(event) {
+    copyTextToClipboard(document.querySelector('.result_encoded').innerText);
+});
 
-    copyDecoded.addEventListener('click', function(event) {
-        copyTextToClipboard(document.querySelector('.result_decoded').innerText);
-    });
+copyDecoded.addEventListener('click', function(event) {
+    copyTextToClipboard(document.querySelector('.result_decoded').innerText);
+});
