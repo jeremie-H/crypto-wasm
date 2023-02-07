@@ -7,7 +7,7 @@ use std::{
 
 use js_sys::Reflect;
 use wasm_bindgen::JsCast;
-use web_sys::{console, Document, Element, HtmlDivElement, HtmlElement, HtmlInputElement};
+use web_sys::{Document, Element, HtmlDivElement, HtmlElement, HtmlInputElement};
 
 use chacha20poly1305::{
     aead::{generic_array::GenericArray, Aead, AeadCore, KeyInit, OsRng},
@@ -35,7 +35,7 @@ pub fn console_log(msg: &str) {
 pub fn encrypt(document: &Document, options: &JsValue) -> Result<(), JsValue> {
     //help debug in console
     panic::set_hook(Box::new(console_error_panic_hook::hook));
-    console_log("🔑 encrypt in chacha20-poly1305");
+    console_log("🔑 encrypt in chacha20-poly1305 - test reload");
 
     if document.is_undefined() || document.is_null() {
         return Err(JsValue::from_str("document should be passed in the fonction in order to be use results fields"));
