@@ -17,8 +17,15 @@ document.querySelector('#encrypt-button').addEventListener('click', function(eve
     const clef = document.getElementById('wasm-enc-key').value;
     const message = document.getElementById('wasm-enc-message').value;
 
-    if (!message) {
+    if (!message || message.trim() === '') {
         showToast('⚠️ Please enter a message to encrypt');
+        return;
+    }
+
+    // Verify WASM module is loaded
+    if (!wasm || typeof wasm.encrypt !== 'function') {
+        showToast('❌ WASM module not loaded. Please refresh the page.');
+        console.error('WASM module error: wasm.encrypt is not available');
         return;
     }
 
@@ -34,6 +41,7 @@ document.querySelector('#encrypt-button').addEventListener('click', function(eve
 
         showToast('✅ Message encrypted successfully!');
     } catch (error) {
+        console.error('Encryption error:', error);
         showToast('❌ Encryption failed: ' + error.message);
     } finally {
         // Remove loading state
@@ -49,8 +57,15 @@ document.querySelector('#decrypt-button').addEventListener('click', function(eve
     const nonce = document.getElementById('wasm-dec-nonce').value;
     const encoded = document.getElementById('wasm-dec-encoded').value;
 
-    if (!key || !nonce || !encoded) {
+    if (!key || !nonce || !encoded || key.trim() === '' || nonce.trim() === '' || encoded.trim() === '') {
         showToast('⚠️ Please fill all fields');
+        return;
+    }
+
+    // Verify WASM module is loaded
+    if (!wasm || typeof wasm.decrypt !== 'function') {
+        showToast('❌ WASM module not loaded. Please refresh the page.');
+        console.error('WASM module error: wasm.decrypt is not available');
         return;
     }
 
@@ -69,6 +84,7 @@ document.querySelector('#decrypt-button').addEventListener('click', function(eve
 
         showToast('✅ Message decrypted successfully!');
     } catch (error) {
+        console.error('Decryption error:', error);
         messageElement.innerText = "❌ Decryption failed";
         showToast('❌ Decryption failed: ' + error.message);
     } finally {

@@ -29,6 +29,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.wasm$/,
+        type: 'asset/resource',
+      },
+      {
         test: /\.rs$/,
         use: [{
           loader: 'wasm-loader'
@@ -75,9 +79,9 @@ module.exports = {
     //   template: path.resolve(__dirname, 'index.html'),
     // }),
   ]
-  ,
-  experiments: {
-    asyncWebAssembly: true,
-    syncWebAssembly: true
-  },
+  // ,
+  // experiments: {
+  //   asyncWebAssembly: true,
+  //   syncWebAssembly: true
+  // },
 };
